@@ -1,9 +1,0 @@
-[package]
-name = "finalproject"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-csv = "1.1"
-petgraph = "0.6"
-plotters = "0.3"
