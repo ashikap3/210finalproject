@@ -153,7 +153,7 @@ fn main() {
     }
 }
 
-///tests for the program.
+///tests for the program as part of the rubric
 #[cfg(test)]
 mod tests {
     use super::*;
