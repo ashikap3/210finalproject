@@ -154,3 +154,34 @@ fn main() {
 }
 
 ///tests for the program as part of the rubric
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_artist_data() {
+        let test_csv = "Name,Total Streams,Solo Streams,Lead Streams,Feature Streams\n\
+                        Artist1,1000,500,300,200\n\
+                        Artist2,2000,800,600,400\n";
+        let mut rdr = csv::Reader::from_reader(test_csv.as_bytes());
+        let data = parse_artist_data("artists.csv").unwrap();
+        assert_eq!(data.len(), 2);
+        assert_eq!(
+            data[0],
+            ArtistData {
+                total_streams: 1000.0,
+                solo_streams: 500.0,
+                feature_streams: 200.0,
+                lead_streams: 300.0
+            }
+        );
+    }
+
+    #[test]
+    fn test_calculate_regression() {
+        let data = vec![(1.0, 2.0), (2.0, 4.0), (3.0, 6.0)];
+        let (slope, intercept) = calculate_regression(&data);
+        assert!((slope - 2.0).abs() < 1e-6);
+        assert!((intercept - 0.0).abs() < 1e-6);
+    }
+}
